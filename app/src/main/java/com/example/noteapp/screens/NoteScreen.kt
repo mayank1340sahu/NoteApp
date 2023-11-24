@@ -25,7 +25,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.noteapp.DataFlow.NoteData
 import com.example.noteapp.DataFlow.NoteView
-import com.example.noteapp.DataFlow.Repository
 import com.example.noteapp.navigaton.EnumScreens
 import java.util.UUID
 
