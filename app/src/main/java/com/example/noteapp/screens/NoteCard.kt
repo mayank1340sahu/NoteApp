@@ -1,6 +1,7 @@
 package com.example.noteapp.screens
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -17,8 +18,8 @@ import com.example.noteapp.DataFlow.NoteData
 fun NoteCard(note:NoteData,paddingValues: PaddingValues,onClick:()->Unit) {
     Card(onClick = {onClick()}, modifier = Modifier
         .padding(paddingValues)
-        .height(50.dp)
-        .width(100.dp)){
+        .height(70.dp)
+        .fillMaxWidth()){
         val title = note.title
         val text = note.note
         Text(text = title)

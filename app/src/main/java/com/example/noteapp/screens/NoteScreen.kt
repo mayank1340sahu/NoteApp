@@ -51,8 +51,8 @@ fun NoteScreen(
     if (n != null && m != null) {
         if (n != " " && m!= " ") {
 
-            note = n
-            title = m
+            note = m
+            title = n
         }
         }
 
@@ -70,12 +70,11 @@ fun NoteScreen(
                         val not = NoteData(id,title,note)
                         viewModel.noteUpdate(not)
                     }
-                    navController.navigate(EnumScreens.HomeScreen.name)
+                    navController.popBackStack()
                 }
             }) {
                 Text(text = "Save")
             }
-
 
         }, colors = TopAppBarDefaults.mediumTopAppBarColors(
         Color(0xFFF56F45)

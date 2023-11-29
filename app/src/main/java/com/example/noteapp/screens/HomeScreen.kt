@@ -70,7 +70,6 @@ fun HomeScreen(
                                   val h = it.note
                                   navController.navigate(EnumScreens.NoteScreen.name+"/${r}/${g}/${h}")
                               }
-
                                }
                         }
         }
