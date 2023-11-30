@@ -24,8 +24,8 @@ interface NoteDao {
     @Update
    suspend fun updateNote(noteData: NoteData)
 
-   @Delete
-   suspend fun deleteNote(noteData: NoteData)
+   @Query("delete from noteData where id =:id")
+   suspend fun deleteNote(id: UUID)
 
     @Query("delete from NoteData")
    suspend fun deleteAll()

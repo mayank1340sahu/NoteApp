@@ -35,9 +35,10 @@ fun HomeScreen(
     viewModel: NoteView = viewModel(),
     navController: NavController,
 ) {
+
     val notes = viewModel.noteList.collectAsState().value
     Scaffold(Modifier.fillMaxSize(),topBar = {  TopAppBar(modifier = Modifier
-        .padding(3.dp)
+        .padding(bottom = 5.dp, start = 3.dp, end = 3.dp)
         .height(34.dp),
             colors = TopAppBarDefaults.mediumTopAppBarColors(containerColor = Color(0xFFF56F45)),
             title = {
@@ -64,7 +65,8 @@ fun HomeScreen(
 
                     LazyColumn(Modifier.fillMaxSize()) {
                            items(notes) {
-                              NoteCard(note = it, paddingValues = values) {
+                              NoteCard(note = it, paddingValues = values,
+                                  view = viewModel) {
                                   val r = it.id
                                   val g = it.title
                                   val h = it.note
@@ -74,7 +76,6 @@ fun HomeScreen(
                         }
         }
         }
-
 
 @Preview
 @Composable

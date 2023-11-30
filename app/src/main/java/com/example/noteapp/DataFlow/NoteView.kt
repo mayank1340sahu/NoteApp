@@ -1,6 +1,12 @@
 package com.example.noteapp.DataFlow
 
+import android.provider.ContactsContract.CommonDataKinds.Note
 import android.util.Log
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.noteapp.screens.DummyData
@@ -17,7 +23,8 @@ import javax.inject.Inject
 class NoteView @Inject constructor(private var repository: Repository) :ViewModel() {
     private var _noteList = MutableStateFlow<List<NoteData>>(emptyList())
     var noteList = _noteList.asStateFlow()
-
+    var not = mutableStateOf(NoteData(title = "", note = ""))
+     var showDialog by mutableStateOf(false)
     init {
         viewModelScope.launch(Dispatchers.IO){ repository.getData().distinctUntilChanged()
             .collect{
@@ -30,11 +37,30 @@ class NoteView @Inject constructor(private var repository: Repository) :ViewMode
                 _noteList.value = it
             } } }
          }
+    // Function to show the dialog
+    fun showDialog() {
+        showDialog = true
+    }
+    // Function to hide the dialog
+    fun hideDialog() {
+        showDialog = false
+    }
+
+    fun assignNote(note:NoteData){
+        not.value = note
+    }
     fun noteAdd(note: NoteData) = viewModelScope.launch {repository.addNote(note)}
 
-    fun noteRemove(note: NoteData) = viewModelScope.launch { repository.delete(note) }
+    fun noteRemove(id: UUID) = viewModelScope.launch { repository.delete(id) }
 
     fun noteUpdate(note: NoteData) = viewModelScope.launch { repository.updateNote(note) }
 
+    fun getNoteById(id : UUID): NoteData? { var note:NoteData? = null
+        viewModelScope.launch{
+            note = repository.getNoteById(id)
+        }
+        return note
+    }
 
+    fun deleteAll() = viewModelScope.launch { repository.deleteAll() }
 }
