@@ -1,6 +1,5 @@
 package com.example.noteapp.screens
 
-import android.provider.Settings.Global
 import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
@@ -17,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.noteapp.DataFlow.NoteData
 import com.example.noteapp.DataFlow.NoteView
-import java.util.logging.Logger.global
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
